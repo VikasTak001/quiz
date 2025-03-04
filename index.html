@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz App</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            overflow: hidden;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+        }
+
+        .main {
+            width: 100vw;
+            height: 100vh;
+            background-color: lightcyan;
+            align-items: center;
+            justify-content: center;
+            display: flex;
+        }
+
+        .boxchild {
+            width: 600px;
+            align-items: center;
+            justify-content: center;
+            display: flex;
+            border-radius: 25px;
+            background-color: lightgrey;
+            transition: 0.5s;
+            padding: 20px;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .option {
+            width: 100%;
+            height: 60px;
+            border: 3px solid rgb(0, 0, 0);
+            background-color: white;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 10px 0px 15px 10px;
+            cursor: pointer;
+            font-size: 25px;
+        }
+
+        .question {
+            width: 100%;
+            margin-bottom: 20px;
+            font-weight: bolder;
+            transition: 0.2s;
+            font-size: 25px;
+        }
+
+        .optionCheck {
+            font-weight: bolder;
+            font-size: 30px;
+            background-color: lightcoral;
+            color: white;
+            border: 3px solid white;
+        }
+
+        .result {
+            position: absolute;
+            top: 20px;
+            width: max-content;
+            background-color: black;
+            color: white;
+            padding: 10px 20px;
+            transition: 1s;
+            border-radius: 20px;
+            font-size: 20px;
+            font-weight: bolder;
+            right: 20px;
+        }
+
+        .overlay {
+            height: 600px;
+            width: 900px;
+            position: absolute;
+            background-color: transparent;
+            z-index: 4;
+            visibility: hidden;
+        }
+
+        .overlayVisiable {
+            visibility: visible;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main">
+        <div class="boxchild overlay"></div>
+        <div class="result">
+            Total Marks : 0/5
+        </div>
+        <div class="boxchild">
+            <div class="question">1. console.log("2" + 2 - 2);</div>
+            <audio src="audioblocks-fail-error-mistake-out-of-time-sound_SteZ0mM8RvI_NWM.mp3" class="fail"></audio>
+            <audio src="mixkit-male-voice-cheer-2010.wav" class="pass"></audio>
+            <div class="option">1.
+                22
+            </div>
+            <div class="option">2.
+                20
+            </div>
+            <div class="option">3.
+                NaN
+            </div>
+            <div class="option">4.
+                2
+            </div>
+        </div>
+        <div class="boxchild" style="transform: translateX(700px); position: absolute; opacity: 0;">
+            <div class="question">2. console.log(null == undefined);</div>
+            <audio src="audioblocks-fail-error-mistake-out-of-time-sound_SteZ0mM8RvI_NWM.mp3" class="fail"></audio>
+            <audio src="mixkit-male-voice-cheer-2010.wav" class="pass"></audio>
+            <div class="option">1.
+                true
+            </div>
+            <div class="option">2.
+                false
+            </div>
+            <div class="option">3.
+                null
+            </div>
+            <div class="option">4.
+                undefined
+            </div>
+        </div>
+        <div class="boxchild" style="transform: translateX(700px); position: absolute; opacity: 0;">
+            <div class="question">3. console.log(1 + '1' - 1);</div>
+            <audio src="audioblocks-fail-error-mistake-out-of-time-sound_SteZ0mM8RvI_NWM.mp3" class="fail"></audio>
+            <audio src="mixkit-male-voice-cheer-2010.wav" class="pass"></audio>
+            <div class="option">1.
+                11
+            </div>
+            <div class="option">2.
+                10
+            </div>
+            <div class="option">3.
+                NaN
+            </div>
+            <div class="option">4.
+                1
+            </div>
+        </div>
+        <div class="boxchild" style="transform: translateX(700px); position: absolute; opacity: 0;">
+            <div class="question">4. console.log(1 === '1');</div>
+            <audio src="audioblocks-fail-error-mistake-out-of-time-sound_SteZ0mM8RvI_NWM.mp3" class="fail"></audio>
+            <audio src="mixkit-male-voice-cheer-2010.wav" class="pass"></audio>
+            <audio src="mixkit-ending-show-audience-clapping-478.wav" class="cong"></audio>
+            <div class="option">1.
+                true
+            </div>
+            <div class="option">2.
+                false
+            </div>
+            <div class="option">3.
+                undefined
+            </div>
+            <div class="option">4.
+                null
+            </div>
+        </div>
+        <div class="boxchild" style="transform: translateX(700px); position: absolute; opacity: 0;">
+            <div class="question">5. console.log('5' - 3);</div>
+            <audio src="audioblocks-fail-error-mistake-out-of-time-sound_SteZ0mM8RvI_NWM.mp3" class="fail"></audio>
+            <audio src="mixkit-male-voice-cheer-2010.wav" class="pass"></audio>
+            <div class="option">1.
+                53
+            </div>
+            <div class="option">2.
+                8
+            </div>
+            <div class="option">3.
+                NaN
+            </div>
+            <div class="option">4.
+                2
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    var option = document.querySelectorAll('.option');
+    var fai = document.querySelector('.fail');
+    var overlay = document.querySelector('.overlay');
+    var pas = document.querySelector('.pass');
+    var ans = [2, 1, 2, 2, 4];
+    var ansind = 0;
+    var marks = 0;
+    var result = document.querySelector('.result');
+    var congratesMusic = document.querySelector('.cong');
+    for (op of option) {
+        op.addEventListener(
+            'click',
+            function () {
+                overlay.classList.add('overlayVisiable');
+                setTimeout(
+                    function () {
+                        overlay.classList.remove('overlayVisiable');
+                    }, 100
+                )
+                this.parentElement.style.transform = "translateX(-200px)";
+                this.parentElement.style.opacity = "0";
+                for (optcls of option) {
+                    optcls.classList.remove('optionCheck');
+                    optcls.style.backgroundColor = "";
+                }
+                this.classList.add('optionCheck');
+                var userAns = Number(this.innerText[0]);
+                if (userAns == ans[ansind]) {
+                    this.style.backgroundColor = "green";
+                    pas.play();
+                    marks++;
+                } else {
+                    this.style.backgroundColor = "red";
+                    fai.play();
+                }
+                result.innerText = `Total Marks :${marks}/5`;
+                ansind++;
+                this.parentElement.nextElementSibling.style.transform = "translateX(0px)";
+                this.parentElement.nextElementSibling.style.opacity = "1";
+            }
+        )
+    }
+    var playful = 0;
+    setInterval(
+        function () {
+            if (marks < 0) {
+                result.style.backgroundColor = "red";
+            } else if (marks == 0) {
+                result.style.backgroundColor = "Orange";
+            } else if (marks > 2) {
+                result.style.backgroundColor = "green";
+            } else if (marks > 4) {
+                result.style.backgroundColor = "darkgreen";
+            } else {
+                result.style.backgroundColor = "lightgreen";
+            }
+            if (ansind == 5) {
+                result.style.top = "50%";
+                result.style.right = "45%";
+                result.style.transform = "translate(-50%)";
+                result.style.transform = "scale(2)";
+                setTimeout(
+                    function () {
+                        if (marks > 2 && playful == 0) {
+                            congratesMusic.play();
+                            playful++;
+                        }
+                    }, 800
+                )
+            }
+        }, 1
+    )
+
+</script>
+
+</html>
